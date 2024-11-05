@@ -10,6 +10,7 @@ import Root from './components/Root.jsx';
 import Home from './components/Home.jsx';
 import Register from './components/Register.jsx';
 import Login from './components/Login.jsx';
+import UserProviders from './Providers/UserProviders.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -17,15 +18,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element:<Home></Home>,
+        element: <Home></Home>,
       },
       {
         path: '/login',
-        element:<Login></Login>
+        element: <Login></Login>
       },
       {
         path: '/register',
-        element:<Register></Register>
+        element: <Register></Register>
       }
     ]
   },
@@ -33,6 +34,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-  <RouterProvider router={router} />
+    <UserProviders>
+      <RouterProvider router={router} />
+    </UserProviders>
   </StrictMode>,
 )
