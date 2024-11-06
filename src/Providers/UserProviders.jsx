@@ -1,9 +1,14 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import PropTypes from 'prop-types';
+import { createUserWithEmailAndPassword } from "firebase/auth/cordova";
 
  export const UserContext = createContext(null)
 const UserProviders = ({children}) => {
-    const userInfo ={name:'nodi sagor khal bil'}
+    const [user, setUser] = useState(null)
+    const createUser = (email, password) => {
+        return createUserWithEmailAndPassword(auth, email, password)
+    }
+    const userInfo ={user, createUser}
     return (
         <UserContext.Provider value={userInfo}>
             {children}

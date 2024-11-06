@@ -1,14 +1,30 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../Providers/UserProviders";
+
 
 
 const Register = () => {
+    const createUser = useContext(UserContext)
+
     const handleRegister = e => {
         e.preventDefault();
         const name = e.target.name.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
+
+        console.log(name, email, password)
+
+        createUser(email, password)
+            .then(result => {
+                console.log(result.user)
+
+            })
+            .catch(error => {
+                console.error(error)
+            })
         
-        console.log(name,email,password)
+
     }
     return (
         <div className="hero bg-base-200 min-h-screen">
