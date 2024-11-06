@@ -5,7 +5,7 @@ import { UserContext } from "../Providers/UserProviders";
 
 
 const Register = () => {
-    const createUser = useContext(UserContext)
+    const { createUser } = useContext(UserContext)
 
     const handleRegister = e => {
         e.preventDefault();
@@ -23,7 +23,7 @@ const Register = () => {
             .catch(error => {
                 console.error(error)
             })
-        
+
 
     }
     return (
@@ -37,7 +37,7 @@ const Register = () => {
                     <form onSubmit={handleRegister} className="card-body">
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Email</span>
+                                <span className="label-text">name</span>
                             </label>
                             <input
                                 type="text"
