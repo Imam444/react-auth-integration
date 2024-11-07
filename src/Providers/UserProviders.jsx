@@ -10,15 +10,18 @@ import {
 export const UserContext = createContext(null);
 const UserProviders = ({ children }) => {
   const [user, setUser] = useState(null);
+  const[loading, setLoading]=  useState(true)
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
   const signInUser = (email, password) => {
+    setLoading(true)
     return signInWithEmailAndPassword(auth, email, password);
   };
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, currentUser => {
       setUser(currentUser)
+      setLoading(false)
     });
     return () => {
       unSubscribe();
@@ -26,6 +29,7 @@ const UserProviders = ({ children }) => {
   }, [])
 
   const logOut = () => {
+    setLoading(true)
      return signOut(auth)
    
   }
@@ -33,7 +37,8 @@ const UserProviders = ({ children }) => {
     user,
     createUser,
     signInUser,
-    logOut
+    logOut,
+    loading
   };
   return (
     <UserContext.Provider value={userInfo}>{children}</UserContext.Provider>
